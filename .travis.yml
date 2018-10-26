@@ -30,4 +30,5 @@ before_script:
   - ls "$(brew --prefix open-mpi)"/{bin,lib,include} || ls "$(brew --prefix mpich)"/{bin,lib,include} || true
 script:
   - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake .
+  - ls -a CMakeFiles
   - cat CMakeFiles/CMakeOutput.log
