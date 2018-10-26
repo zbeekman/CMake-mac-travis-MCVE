@@ -42,7 +42,7 @@ for version in ${GCC}; do
 		  -DCMAKE_BUILD_TYPE:STRING="${BUILD_TYPE}" \
 		  -DMPI_CXX_SKIP_MPICXX:BOOL=ON \
 		  -DMPI_ASSUME_NO_BUILTIN_MPI:BOOL=ON \
-		  -DMPI_SKIP_GUESSING ..
+		  -DMPI_SKIP_GUESSING:BOOL=ON ..
 	)
     done
 done
