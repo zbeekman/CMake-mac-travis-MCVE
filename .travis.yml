@@ -23,4 +23,9 @@ matrix:
 
 before_install: brew cask rm oclint
 install: brew link gcc
+before_script:
+  - env | grep -i mpi || true
+  - echo $PATH
+  - env | grep -i cmake || true
+  - ls "$(brew --prefix open-mpi)"/{bin,lib,include} || ls "$(brew --prefix mpich)"/{bin,lib,include} || true
 script: FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake .
