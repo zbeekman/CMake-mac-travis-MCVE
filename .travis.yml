@@ -29,7 +29,7 @@ before_script:
   - env | grep -i cmake || true
   - ls "$(brew --prefix open-mpi)"/{bin,lib,include} || ls "$(brew --prefix mpich)"/{bin,lib,include} || true
 script:
-  - FC=gfortran-8 cmake --warn-uninitialized -DCMAKE_MPI_C_COMPILER=mpicc -DCMAKE_MPI_CXX_COMPILER=mpicxx .
+  - FC=gfortran-8 cmake --warn-uninitialized -DMPI_C_COMPILER=mpicc -DMPI_CXX_COMPILER=mpicxx .
   - ls -a CMakeFiles CMakeFiles/CMakeTmp
   - cat CMakeFiles/CMakeOutput.log
   - cmake --system-information
