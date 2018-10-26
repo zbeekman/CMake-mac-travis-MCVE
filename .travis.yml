@@ -2,6 +2,8 @@
 language: c
 
 os: osx
+compiler:
+  - gcc
 
 env:
   global:
@@ -24,18 +26,22 @@ matrix:
       env:
         - BUILD_TYPE="InstallScript"
           GCC=8
+          CC=clang
       addons:
         homebrew:
           packages:
-            - gcc
             - shellcheck
             - cmake
             - mpich
+          update: true
+      compiler:
+        - clang
     -
       <<: *macOS
       env:
         - GCC=8
           BUILD_TYPES="debug RelWithDebInfo Release"
+          CC=gcc-8
       addons:
         homebrew:
           packages:
@@ -43,5 +49,8 @@ matrix:
             - openmpi
             - shellcheck
             - cmake
+          update: true
+      compiler:
+        - gcc
 
 script: ./test-script.cmake.sh
