@@ -53,4 +53,6 @@ matrix:
       compiler:
         - gcc
 
+before_install: brew cask rm oclint
+install: brew link gcc
 script: ./test-script.cmake.sh
