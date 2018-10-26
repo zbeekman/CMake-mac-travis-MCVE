@@ -2,20 +2,15 @@
 language: generic
 
 os: osx
-matrix:
-  include:
-    - &macOS
-      os: osx
-      env:
-        - GCC=8
-          CC=gcc-8
-      addons:
-        homebrew:
-          packages:
-            - gcc
-            - cmake
-            - open-mpi
-          update: true
+env:
+  - CC=gcc-8
+addons:
+  homebrew:
+    packages:
+      - gcc
+      - cmake
+      - open-mpi
+    update: true
 
 before_install: brew cask rm oclint
 install: brew link gcc
