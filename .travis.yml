@@ -28,4 +28,6 @@ before_script:
   - echo $PATH
   - env | grep -i cmake || true
   - ls "$(brew --prefix open-mpi)"/{bin,lib,include} || ls "$(brew --prefix mpich)"/{bin,lib,include} || true
-script: FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake .
+script:
+  - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake .cat
+  - cat CMakeFiles/CMakeOutput.log
