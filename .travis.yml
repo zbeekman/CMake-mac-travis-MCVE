@@ -34,3 +34,9 @@ script:
   - cat CMakeFiles/CMakeOutput.log
   - cmake --system-information
   - ls -a CMakeFiles/FindMPI
+  - echo 'int main(){return 0;};' > zero.c
+  - gcc-8 -o zero zero.c && ./zero
+  - mpicc -o zero_mpi zero.c
+  - mpirun -n 1 ./zero_mpi
+  - mpirun -n 2 ./zero_mpi
+  - ./zero_mpi

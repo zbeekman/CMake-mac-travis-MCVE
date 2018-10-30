@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.4)
+cmake_policy(VERSION 3.4...3.12)
 project(foo LANGUAGES C CXX Fortran)
-find_package( MPI )
+find_package( MPI
+  COMPONENTS C CXX Fortran)
 if ( (NOT MPI_C_FOUND) OR (NOT MPI_Fortran_FOUND) OR (NOT MPIEXEC))
   # Get default install location of MPICH from install.sh
   message(WARNING "Could not find all MPI components!")
