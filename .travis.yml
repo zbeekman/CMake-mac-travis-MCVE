@@ -40,3 +40,11 @@ script:
   - mpirun -n 1 ./zero_mpi
   - mpirun -n 2 ./zero_mpi
   - ./zero_mpi
+  - mpicc -o mpicworks "$(brew --prefix cmake)/share/cmake/Modules/FindMPI/test_mpi.c"
+  - mpicc -DMPI_VERSION=3 -DMPI_SUBVERSION=1 -o mpicversion "$(brew --prefix cmake)/share/cmake/Modules/FindMPI/test_mpi.c"
+  - mpirun -n 1 ./mpicworks
+  - mpirun -n 1 ./mpicversion
+  - mpirun -n 2 ./mpicworks
+  - mpirun -n 2 ./mpicversion
+  - ./mpicworks
+  - ./mpicversion
