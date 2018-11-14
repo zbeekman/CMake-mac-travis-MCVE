@@ -21,7 +21,7 @@ matrix:
           update: true
 
 
-before_install: brew cask rm oclint
+before_install: brew cask rm oclint || true
 install: brew link gcc
 before_script:
   - env | grep -i mpi || true
