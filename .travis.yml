@@ -29,7 +29,7 @@ before_script:
   - env | grep -i cmake || true
   - ls "$(brew --prefix open-mpi)"/{bin,lib,include} || ls "$(brew --prefix mpich)"/{bin,lib,include} || true
 script:
-  - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake .
+  - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake --debug-trycompile .
   - ls -a CMakeFiles CMakeFiles/CMakeTmp
   - cat CMakeFiles/CMake*.*
   - cat CMakeFiles/FindMPI || ls -a CMakeFiles/FindMPI
