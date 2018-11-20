@@ -31,5 +31,4 @@ before_script:
 script:
   - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake --debug-trycompile .
   - ls -a CMakeFiles CMakeFiles/CMakeTmp
-  - cat CMakeFiles/CMake*.*
-  - cat CMakeFiles/FindMPI || ls -a CMakeFiles/FindMPI
+
