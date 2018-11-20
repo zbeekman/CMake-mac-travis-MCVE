@@ -22,5 +22,12 @@ matrix:
             - mpich
           update: true
 
+install:
+  - brew install gcc || true
+  - brew upgrade gcc || true
+  - brew link --overwrite gcc || true
+  - gcc-8 --version || true
+  - gcc --version || true
+
 script:
   - FC=gfortran-8 CXX=g++-8 CC=gcc-8 cmake -Wdev -Wdeprecated --debug-trycompile .
