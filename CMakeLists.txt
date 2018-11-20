@@ -3,6 +3,16 @@ cmake_minimum_required(VERSION 3.12)
 project(foo LANGUAGES C CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})
 
+
+try_compile(valid_compiler
+    "${CMAKE_BINARY_DIR}"
+    SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/test.cxx"
+    OUTPUT_VARIABLE compile_log
+    )
+message(STATUS "compile_log
+${compile_log}
+")
+
 # find_package( MPI )
 # if ( (NOT MPI_C_FOUND) OR (NOT MPI_Fortran_FOUND) OR (NOT MPIEXEC))
 #   # Get default install location of MPICH from install.sh
