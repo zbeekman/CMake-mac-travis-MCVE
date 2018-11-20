@@ -1199,6 +1199,7 @@ ${mpi_compile_log}
 endfunction()
 
 macro(_MPI_check_lang_works LANG)
+  message(STATUS "_MPI_check_lang_works ${LANG}")
   # For Fortran we may have by the MPI-3 standard an implementation that provides:
   #   - the mpi_f08 module
   #   - *both*, the mpi module and 'mpif.h'
@@ -1403,6 +1404,11 @@ foreach(LANG IN ITEMS C CXX Fortran)
         set(MPI_${LANG}_TRIED_IMPLICIT TRUE)
       endif()
 
+      message(STATUS "MPI_SKIP_COMPILER_WRAPPER: ${MPI_SKIP_COMPILER_WRAPPER}")
+      message(STATUS "CMAKE_${LANG}_COMPILER: ${CMAKE_${LANG}_COMPILER}")
+      message(STATUS "MPI_${LANG}_COMPILER: ${MPI_${LANG}_COMPILER}")
+      message(STATUS "MPI_${LANG}_WORKS: ${MPI_${LANG}_WORKS}")
+
       if(NOT "${MPI_${LANG}_COMPILER}" STREQUAL "${CMAKE_${LANG}_COMPILER}" OR NOT MPI_${LANG}_WORKS)
         set(MPI_${LANG}_WRAPPER_FOUND FALSE)
         set(MPI_PINNED_COMPILER FALSE)
@@ -1418,6 +1424,8 @@ foreach(LANG IN ITEMS C CXX Fortran)
             # If the user specifies a compiler, we don't want to try to search libraries either.
             set(MPI_PINNED_COMPILER TRUE)
           endif()
+
+        message(STATUS "MPI_PINNED_COMPILER: ${MPI_PINNED_COMPILER}")
 
           # If we have an MPI base directory, we'll try all compiler names in that one first.
           # This should prevent mixing different MPI environments
@@ -1444,6 +1452,7 @@ foreach(LANG IN ITEMS C CXX Fortran)
 
             # If we haven't made the implicit compiler test yet, perform it now.
             if(NOT MPI_${LANG}_TRIED_IMPLICIT)
+              message(STAUS "NOT MPI_${LANG}_TRIED_IMPLICIT")
               _MPI_create_imported_target(${LANG})
               _MPI_check_lang_works(${LANG})
             endif()
